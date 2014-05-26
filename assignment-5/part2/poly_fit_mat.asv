@@ -1,0 +1,22 @@
+function [ mat ] = poly_fit_mat( X, n, excluded)
+%POLY_FIT_MAT generate the matrix for polynomial fit.
+% inputs
+%   X : x data
+%   n : order
+%
+% outputs
+%   mat : matrix for polynomial fit
+    
+    if length(n) ~= 1 || n<1
+        stop('n must be a positive integer')
+    end
+    
+    if isempty(excluded)
+        stop()
+    end
+    
+    N = size(X, 1);
+    mat = [ones(N,1) cumprod(repmat(X,[1 n]),2)];
+    mat = mat(:,setdiff(0:n,excluded));
+end
+

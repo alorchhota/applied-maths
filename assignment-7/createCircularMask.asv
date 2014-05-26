@@ -1,0 +1,16 @@
+% this function create a circular mask.
+%
+% Developer: Ashis Saha
+% Date: 2014-05-25
+% Last modified: 2014-05-25
+
+function [ mask ] = createCircularMask(width, height, radius, centerx, centery)
+
+% InputS:
+%    width = width of image
+%    height :
+    [W,H] = meshgrid(1:width, 1:height);
+    mask = sqrt((W-centerx).^2 + (H-centery).^2) < radius;
+    
+end
+

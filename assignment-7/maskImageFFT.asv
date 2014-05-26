@@ -1,0 +1,64 @@
+% gradient_descent implements the gradient descent algorithm.
+%
+% Developer: Ashis Saha
+% Date: 2014-05-11
+% Last modified: 2014-05-11
+
+
+
+function maskImageFFT(inputImage,nClicks,filterSize)
+
+% inputs
+%   f : function handle
+%   g : gradient (derivative) handle
+%   xstart : staring point
+%   lambda : update rate
+%   tolerance : small value close to zero which is accepted as zero.
+%   maxiterations: maximum iterations.
+%
+% outputs
+%   xoptimal : optimal value of x
+%   foptimal : optimal value of f (at xoptimal)
+%   niterations : number of iteration required to converge
+
+
+    %% load the image and convert it to gray scale
+    I = imread(inputImage);
+    I = rgb2gray(I);
+
+    %% display the image on screen
+    figure;
+    imshow(I);
+
+    %% show the fourier spectrum
+    figure;
+    F = fftshift(fft2(I));
+    %F = fft2(I);
+    imshow(log(1+abs(F)),[]);
+
+    %% take input from users
+    [x,y] = ginput(nClicks)
+
+    %% mask user points
+    hs = filterSize/2;  % half size of filter
+    M = ones
+    for i = 1:nClicks
+        % mask as rectangle
+        F((x(i)-hs):(x(i)-hs+filterSize), (y(i)-hs):(y(i)-hs+filterSize)) = 0;
+        
+        % mask as circle
+        
+    end
+    
+    %% inverse fourier transform
+    %invI = ifft2(ifftshift(F));
+    invI = ifft2(ifftshift(F));
+    
+    %% show the inverse image
+    figure;
+    imshow(invI,[]);
+
+
+
+end
+

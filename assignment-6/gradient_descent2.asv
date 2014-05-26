@@ -1,0 +1,46 @@
+% POLYNOMIAL_FIT find polynomial fit of data.
+%
+% Developer: Ashis Saha
+% Date: 2014-04-27
+% Last modified: 2014-04-27
+
+
+
+function [xoptimal,foptimal,niterations] = ...
+    gradient_descent2( f,g,xstart,lambda,tolerance,maxiterations, range)
+
+% inputs
+%   X : x data
+%   Y : y data
+%   n : order
+%
+% outputs
+%   fit : polynomial fit
+
+    x = xstart;
+    iter = 0;
+    xs = [];
+    fs = [];
+    while iter < maxiterations
+        gx = g(x);
+        if all(abs(gx) <=  tolerance)
+            break;
+        end
+        x = x - lambda * gx;
+        iter = iter + 1;
+        
+        xs = horzcat(xs,x);
+        fs = horzcat(fs,f(x));
+    end
+    
+    xoptimal = x;
+    foptimal = f(xoptimal);
+    niterations = iter;
+    
+    figure;
+    f1 = @(x,y) f([x;y]);
+    ezsurf(f1, range);
+    hold on;
+    plot3(xs);
+end
+

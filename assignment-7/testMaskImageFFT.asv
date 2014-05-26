@@ -1,0 +1,21 @@
+% This script is to play with fourier analysis.
+%
+% Developer: Ashis Saha
+% Date: 2014-05-25
+% Last modified: 2014-05-25
+
+
+
+%% clear workspace; close all figures; clear output window
+clear all; close all; clc;
+
+%% define input variables
+inputImage = 'pic2.png';
+
+%% call maskImageFFT
+nClicks = 10;
+filterSize = 10;
+%maskImageFFT(inputImage, nClicks, filterSize);
+
+    
+    

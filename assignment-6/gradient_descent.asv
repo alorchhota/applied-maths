@@ -1,0 +1,37 @@
+% gradient_descent implements the gradient .
+%
+% Developer: Ashis Saha
+% Date: 2014-04-27
+% Last modified: 2014-04-27
+
+
+
+function [xoptimal,foptimal,niterations] = ...
+    gradient_descent( f,g,xstart,lambda,tolerance,maxiterations)
+
+% inputs
+%   X : x data
+%   Y : y data
+%   n : order
+%
+% outputs
+%   fit : polynomial fit
+
+    x = xstart;
+    iter = 0;
+    
+    while iter < maxiterations
+        gx = g(x);
+        if all(abs(gx) <=  tolerance)
+            break;
+        end
+        x = x - lambda * gx;
+        iter = iter + 1;
+        disp(x)
+    end
+    
+    xoptimal = x;
+    foptimal = f(xoptimal);
+    niterations = iter;
+end
+
